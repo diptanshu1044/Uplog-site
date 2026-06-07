@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --border: #222222;
+  --text-primary: #f0f0f0;
+  --text-secondary: #888888;
+  --accent: #e8ff00;
+  --accent-dim: #b8cc00;
+  --json-number: #7ec8e3;
+  --comment: #555555;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-ibm-plex-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.04;
+  }
+
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer utilities {
+  .hero-fade-in {
+    animation: heroFadeIn 0.6s ease 0.3s both;
+  }
+
+  @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .code-block {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow-x: auto;
+  }
+
+  .code-block::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--accent);
+  }
+
+  .code-block pre {
+    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    white-space: pre;
+  }
+
+  .feature-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    transition: border-color 150ms ease;
+  }
+
+  .feature-card:hover {
+    border-color: var(--accent);
+  }
+
+  .btn-primary {
+    background-color: var(--accent);
+    color: var(--bg);
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--accent-dim);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border);
+    transition: border-color 120ms ease, color 120ms ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn-outline-accent {
+    background-color: var(--surface);
+    color: var(--accent);
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--accent);
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+
+  .btn-outline-accent:hover {
+    background-color: var(--accent);
+    color: var(--bg);
+  }
+
+  .download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-size: 0.875rem;
+    padding: 0.875rem 1rem;
+    text-align: left;
+    transition: border-color 120ms ease, color 120ms ease;
+  }
+
+  .download-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .section-heading {
+    font-family: var(--font-ibm-plex-mono), monospace;
+    color: var(--accent);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  .toml-section {
+    color: var(--text-secondary);
+  }
+
+  .toml-key {
+    color: var(--text-primary);
+  }
+
+  .toml-value {
+    color: var(--accent);
+  }
+
+  .json-key {
+    color: var(--text-secondary);
+  }
+
+  .json-string {
+    color: var(--accent);
+  }
+
+  .json-number {
+    color: var(--json-number);
+  }
+
+  .shell-comment {
+    color: var(--text-secondary);
+  }
+
+  .shell-command {
+    color: var(--text-primary);
+  }
+}
