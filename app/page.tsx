@@ -392,16 +392,22 @@ export default function Home() {
             <div className="code-block">
               <pre>
                 <code>
-                  <span className="shell-comment"># Extract</span>
+                  <span className="shell-comment"># Linux / macOS</span>
                   {"\n"}
                   <span className="shell-command">
-                    tar -xzf uplog-linux-x86_64.tar.gz
+                    curl -fsSL https://uplog.in/install | sh
+                  </span>
+                  {"\n\n"}
+                  <span className="shell-comment"># Windows (PowerShell)</span>
+                  {"\n"}
+                  <span className="shell-command">
+                    irm https://uplog.in/install | iex
                   </span>
                   {"\n\n"}
                   <span className="shell-comment"># Run</span>
                   {"\n"}
                   <span className="shell-command">
-                    ./uplog --config uplog.toml
+                    uplog --config uplog.toml
                   </span>
                 </code>
               </pre>
