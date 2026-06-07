@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { DownloadButton } from "@/components/download-button";
+import { BINARIES, getDownloadUrl } from "@/lib/detect-platform";
 
 const GITHUB_URL = "https://github.com/diptanshu1044/uplog";
 
@@ -163,9 +165,7 @@ export default function Home() {
             </p>
 
             <div className="mb-10 flex flex-wrap items-center justify-center gap-4">
-              <Button asChild variant="default">
-                <a href="#download">Download Binary</a>
-              </Button>
+              <DownloadButton />
               <Button asChild variant="secondary">
                 <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -375,18 +375,19 @@ export default function Home() {
           <h2 className="section-heading">Download</h2>
           <div className="mb-8 grid gap-8 md:grid-cols-2">
             <div className="flex flex-col gap-3">
-              <a href="#" className="download-btn">
-                Linux x86_64 (.tar.gz)
-                <DownloadArrowIcon />
-              </a>
-              <a href="#" className="download-btn">
-                macOS x86_64 (.tar.gz)
-                <DownloadArrowIcon />
-              </a>
-              <a href="#" className="download-btn">
-                macOS ARM64 / Apple Silicon (.tar.gz)
-                <DownloadArrowIcon />
-              </a>
+              <DownloadButton variant="download-btn">
+                Download for your platform
+              </DownloadButton>
+              {BINARIES.map(({ filename, label }) => (
+                <a
+                  key={filename}
+                  href={getDownloadUrl(filename)}
+                  className="download-btn"
+                >
+                  {label}
+                  <DownloadArrowIcon />
+                </a>
+              ))}
             </div>
             <div className="code-block">
               <pre>
