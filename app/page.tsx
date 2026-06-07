@@ -139,7 +139,7 @@ export default function Home() {
                 padding: "0.375rem 0.875rem",
               }}
             >
-              v0.1.0 — now available
+              v0.1.2 — now available
             </span>
 
             <h1
